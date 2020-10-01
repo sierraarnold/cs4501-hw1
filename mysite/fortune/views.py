@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from .models import Question, Choice, Fortune
 
-def index(request):
+def index(request): #homepage
     question_list = Question.objects.order_by('id')
     context = {'question_list': question_list}
     return render(request, 'fortune/index.html', context)
