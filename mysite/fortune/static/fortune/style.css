@@ -14,6 +14,9 @@ body {
 h1 {
     text-align: center;
 }
+h6 {
+    text-align: right;
+}
 #dropdownMenuButton {
     float: right;
 }
@@ -28,5 +31,9 @@ ul {
 #homebutton {
     position: fixed;
     right: 0;
+    bottom: 0;
+}
+#verification {
+    position: fixed;
     bottom: 0;
 }
