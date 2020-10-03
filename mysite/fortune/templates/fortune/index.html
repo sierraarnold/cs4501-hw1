@@ -57,7 +57,7 @@
         {% if question_list %}
         <b>To discover your fortune, answer all of the questions listed below.</b>
         {% for question in question_list %}
-        <ul>{{question.question_key}}. {{ question.question_text }}</ul>
+        <ul>{{ question.question_text }}</ul>
         {% endfor %}
         {% else %}
         <p>No fortunes are available.</p>
