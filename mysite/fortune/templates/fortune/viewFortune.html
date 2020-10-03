@@ -40,20 +40,7 @@
         </div>
     </header>
 
-    <h1><b>{{ question.question_text }}</b></h1>
-
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-    <form action="{% url 'fortune:answer' question.id %}" method="POST">
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
-
-    <ul> {{ question.question_status }}</ul>
+    <h1>{{ random.fortune_text }}</h1>
 
     <footer>
         <div id="homebutton" class="row">

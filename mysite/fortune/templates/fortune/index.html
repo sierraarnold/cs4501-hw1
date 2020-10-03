@@ -2,34 +2,87 @@
 
 <head>
     <meta charset="utf-8">
-    <title>THE ULTIMATE AUTOMATED FORTUNE TELLER </title>
+    <title>THE ONLINE AUTOMATED FORTUNE TELLER </title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'fortune/style.css' %}">
 </head>
 
 <body>
-    <h1><b>WELCOME TO THE ULTIMATE AUTOMATED FORTUNE TELLER!</b></h1>
-    {% if question_list %}
-    <ul>
-        {% for question in question_list %}
-        <li><a href="{% url 'fortune:detail' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No fortunes are available.</p>
+    <header>
+        <div>
+            <h1><b>WELCOME TO THE ONLINE AUTOMATED FORTUNE TELLER!</b></h1>
+        </div>
+        <div class="container">
+            <a class="navbar-brand" href="https://www.zillow.com/">
+                <!--Insert the file name of your brand image below after the 'img'-->
+                <img class="img-responsive" src="{% static 'fortune/images/home.png' %}">
+            </a>
+            <a class="navbar-brand" href="{% url 'fortune:verify' %}">
+                <!--Insert the file name of your brand image below after the 'img'-->
+                <img class="img-responsive" src="{% static 'fortune/images/crystal-ball.png' %}">
+            </a>
+            <a class="navbar-brand" href="https://www.costarastrology.com/">
+                <!--Insert the file name of your brand image below after the 'img'-->
+                <img class="img-responsive" src="{% static 'fortune/images/costar-ad.png' %}">
+            </a>
+            <button id="dropdownMenuButton" class="btn btn-outline-secondary dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
+            <div id="dropdownMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for question in question_list %}
+                <a href="{% url 'fortune:detail' question.id %}" type="button"
+                    class="btn btn-outline-danger btn-sm">{{ question.question_key }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </header>
+    {% if messages %}
+    {% for message in messages %}
+    <div id="message" class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+    {% endfor %}
     {% endif %}
+
+    <div>
+        {% if question_list %}
+        <b>To discover your fortune, answer all of the questions listed below.</b>
+        {% for question in question_list %}
+        <ul>{{question.question_key}}. {{ question.question_text }}</ul>
+        {% endfor %}
+        {% else %}
+        <p>No fortunes are available.</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <div id="homebutton" class="row">
+            <div class="col-sm">
+                <a href="https://www.target.com/"><img class="img-responsive"
+                        src="{% static 'fortune/images/target-ad.jpg' %}"></a>
+            </div>
+            <div class="col-sm">
+                <a href="http://biancasreadingsobx.com/"><img class="img-responsive"
+                        src="{% static 'fortune/images/psychic-ad.png' %}"></a>
+            </div>
+            <div class="col-sm">
+                <a href="https://www.starbucks.com/"><img class="img-responsive"
+                        src="{% static 'fortune/images/starbucks-ad.png' %}"></a>
+            </div>
+            <div class="col-sm align-self-end justify-content-end">
+                <a href="{%url 'fortune:index' %}" type="button" class="btn btn-outline-secondary btn-sm">home</a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,0 +1,12 @@
+* {
+    font-family: Luminari, fantasy;
+}
+body {
+    font-family: Impact, fantasy;
+    background: white url("images/sparkle.09fcc069751b.gif") fixed bottom right;
+    color: white;
+}
+ul {
+    list-style: none;
+    color: lime;
+}

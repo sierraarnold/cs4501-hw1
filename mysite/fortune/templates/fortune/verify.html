@@ -40,20 +40,14 @@
         </div>
     </header>
 
-    <h1><b>{{ question.question_text }}</b></h1>
+    <p><b>Before generating your fortune, we need to ensure that you're human
+            (robots don't have fortunes!) Please answer the verification question below.</b></p>
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-    <form action="{% url 'fortune:answer' question.id %}" method="POST">
+    <form action="" method="post">
         {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %}
+        {{ form }}
         <input type="submit" value="Submit">
     </form>
-
-    <ul> {{ question.question_status }}</ul>
 
     <footer>
         <div id="homebutton" class="row">

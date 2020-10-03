@@ -1,6 +1,32 @@
-li a {
-    color:lightseagreen;
+* {
+    font-family: Luminari, fantasy;
+    margin: 3;
+    padding: 0;
 }
 body {
     background: white url("images/sparkle.gif") fixed bottom right;
+    color: royalblue;
+    background-size: 600px;
+    height: 0;
+    max-height: 500px;
+    margin-left: 20;
+}
+h1 {
+    text-align: center;
+}
+#dropdownMenuButton {
+    float: right;
+}
+#dropdownMenu {
+    padding: 3;
+}
+ul {
+    list-style: none;
+    color: cornflowerblue;
+    font-family: Apple Chancery, cursive;
+}
+#homebutton {
+    position: fixed;
+    right: 0;
+    bottom: 0;
 }
