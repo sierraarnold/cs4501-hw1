@@ -49,6 +49,10 @@ def verify(request): #verify number answer
     return render(request, 'fortune/verify.html', {'form': form})
 
 def viewFortune(request): #display fortune (end page)
+    questions = Question.objects.all()
+    for q in questions :
+        q.question_status = False
+        q.save()
     random = Fortune.objects.order_by("?").first()
     return render(request, 'fortune/viewFortune.html', {'random': random})
 
